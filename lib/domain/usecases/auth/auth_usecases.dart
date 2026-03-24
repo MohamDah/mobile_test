@@ -1,61 +1,41 @@
-// TODO(Person2): Implement these use cases fully.
-import '../../../core/usecases/usecase.dart';
-import '../../entities/user_entity.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../repositories/auth_repository.dart';
 
-class SignInParams {
-  const SignInParams({required this.email, required this.password});
-  final String email;
-  final String password;
+/// Signs the user in with email and password.
+class SignInUseCase {
+  const SignInUseCase(this._repository);
+  final AuthRepository _repository;
+  Future<User> call({required String email, required String password}) =>
+      _repository.signInWithEmailAndPassword(email, password);
 }
 
-class RegisterParams {
-  const RegisterParams({
-    required this.email,
-    required this.password,
-    required this.displayName,
-  });
-  final String email;
-  final String password;
-  final String displayName;
+/// Registers a new account; also triggers email verification.
+class RegisterUseCase {
+  const RegisterUseCase(this._repository);
+  final AuthRepository _repository;
+  Future<User> call({required String email, required String password}) =>
+      _repository.registerWithEmailAndPassword(email, password);
 }
 
-class SignInUseCase implements UseCase<UserEntity, SignInParams> {
-  SignInUseCase(this._repo);
-  final AuthRepository _repo;
-  @override
-  Future<UserEntity> call(SignInParams params) =>
-      _repo.signIn(email: params.email, password: params.password);
+/// Initiates Google OAuth sign-in flow.
+class GoogleSignInUseCase {
+  const GoogleSignInUseCase(this._repository);
+  final AuthRepository _repository;
+  Future<User> call() => _repository.signInWithGoogle();
 }
 
-class RegisterUseCase implements UseCase<UserEntity, RegisterParams> {
-  RegisterUseCase(this._repo);
-  final AuthRepository _repo;
-  @override
-  Future<UserEntity> call(RegisterParams params) => _repo.register(
-        email: params.email,
-        password: params.password,
-        displayName: params.displayName,
-      );
+/// Sends a password-reset email.
+class ResetPasswordUseCase {
+  const ResetPasswordUseCase(this._repository);
+  final AuthRepository _repository;
+  Future<void> call(String email) =>
+      _repository.sendPasswordResetEmail(email);
 }
 
-class GoogleSignInUseCase implements UseCase<UserEntity, NoParams> {
-  GoogleSignInUseCase(this._repo);
-  final AuthRepository _repo;
-  @override
-  Future<UserEntity> call(NoParams params) => _repo.signInWithGoogle();
-}
-
-class ResetPasswordUseCase implements UseCase<void, String> {
-  ResetPasswordUseCase(this._repo);
-  final AuthRepository _repo;
-  @override
-  Future<void> call(String email) => _repo.resetPassword(email);
-}
-
-class SignOutUseCase implements UseCase<void, NoParams> {
-  SignOutUseCase(this._repo);
-  final AuthRepository _repo;
-  @override
-  Future<void> call(NoParams params) => _repo.signOut();
+/// Signs the current user out.
+class SignOutUseCase {
+  const SignOutUseCase(this._repository);
+  final AuthRepository _repository;
+  Future<void> call() => _repository.signOut();
 }

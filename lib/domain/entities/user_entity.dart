@@ -1,26 +1,27 @@
 import 'package:equatable/equatable.dart';
 
-/// Domain-level user entity. Implemented by Person 2 (Auth).
+/// Pure-Dart representation of a FitLife user.
+/// The [role] field drives admin vs. regular-user access control.
 class UserEntity extends Equatable {
   const UserEntity({
-    required this.id,
+    required this.uid,
     required this.email,
-    required this.displayName,
     required this.role,
-    this.photoUrl,
-    this.savedGymIds = const [],
+    required this.savedGyms,
   });
 
-  final String id;
+  final String uid;
   final String email;
-  final String displayName;
-  final String role; // 'user' | 'admin'
-  final String? photoUrl;
-  final List<String> savedGymIds;
 
+  /// Either 'user' (default) or 'admin'. Set manually in Firestore console.
+  final String role;
+
+  /// List of gym document IDs the user has bookmarked.
+  final List<String> savedGyms;
+
+  /// Convenience checker so UI/BLoC code reads clearly.
   bool get isAdmin => role == 'admin';
 
   @override
-  List<Object?> get props =>
-      [id, email, displayName, role, photoUrl, savedGymIds];
+  List<Object?> get props => [uid, email, role, savedGyms];
 }
