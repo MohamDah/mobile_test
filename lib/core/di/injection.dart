@@ -42,8 +42,10 @@ Future<void> initDependencies() async {
   sl.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
   sl.registerSingleton<GoogleSignIn>(
     GoogleSignIn(
-      // TODO: replace serverClientId with your google-services.json web client ID.
-      serverClientId: '',
+      // Web OAuth client ID from google-services.json (oauth_client type 3).
+      // Required on Android so that googleAuth.idToken is non-null.
+      serverClientId:
+          '425684716113-l5tt2q32t15842ptrl44q855ecgucgde.apps.googleusercontent.com',
     ),
   );
 

@@ -7,7 +7,6 @@ import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'firebase_options.dart';
 import 'presentation/blocs/auth/auth_bloc.dart';
-import 'presentation/blocs/auth/auth_event.dart';
 import 'presentation/blocs/settings/settings_cubit.dart';
 import 'presentation/blocs/theme/theme_cubit.dart';
 

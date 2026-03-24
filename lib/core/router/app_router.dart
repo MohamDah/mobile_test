@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../domain/entities/gym_entity.dart';
 import '../../presentation/blocs/auth/auth_bloc.dart';
-import '../../presentation/blocs/auth/auth_state.dart';
 import '../../presentation/blocs/gym/gym_bloc.dart';
 import '../../presentation/blocs/saved_gyms/saved_gyms_cubit.dart';
 import '../../presentation/blocs/settings/settings_cubit.dart';
