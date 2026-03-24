@@ -1,34 +1,35 @@
-// TODO(Person2): Implement this fully.
-import '../../domain/entities/user_entity.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/remote/firebase_auth_datasource.dart';
 
+/// Concrete implementation of [AuthRepository] backed by Firebase Auth.
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(this._dataSource);
+  const AuthRepositoryImpl(this._dataSource);
+
   final FirebaseAuthDataSource _dataSource;
 
   @override
-  Stream<UserEntity?> get authStateChanges => const Stream.empty();
+  Stream<User?> get authStateChanges => _dataSource.authStateChanges;
 
   @override
-  Future<UserEntity> signIn({required String email, required String password}) =>
-      throw UnimplementedError('TODO(Person2)');
+  User? get currentUser => _dataSource.currentUser;
 
   @override
-  Future<UserEntity> register({
-    required String email,
-    required String password,
-    required String displayName,
-  }) => throw UnimplementedError('TODO(Person2)');
+  Future<User> signInWithEmailAndPassword(String email, String password) =>
+      _dataSource.signInWithEmailAndPassword(email, password);
 
   @override
-  Future<UserEntity> signInWithGoogle() =>
-      throw UnimplementedError('TODO(Person2)');
+  Future<User> registerWithEmailAndPassword(String email, String password) =>
+      _dataSource.registerWithEmailAndPassword(email, password);
 
   @override
-  Future<void> resetPassword(String email) =>
-      throw UnimplementedError('TODO(Person2)');
+  Future<User> signInWithGoogle() => _dataSource.signInWithGoogle();
 
   @override
-  Future<void> signOut() => throw UnimplementedError('TODO(Person2)');
+  Future<void> sendPasswordResetEmail(String email) =>
+      _dataSource.sendPasswordResetEmail(email);
+
+  @override
+  Future<void> signOut() => _dataSource.signOut();
 }
