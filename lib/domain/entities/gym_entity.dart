@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-/// Domain-level gym entity. Implemented by Person 3 (Gym Feed & Detail).
+/// Pure-Dart representation of a gym listing.
+/// Contains no Flutter or Firebase imports — this is the "truth" of what a gym
+/// is within the application domain.
 class GymEntity extends Equatable {
   const GymEntity({
     required this.id,
@@ -8,19 +10,28 @@ class GymEntity extends Equatable {
     required this.description,
     required this.district,
     required this.subscriptionPrice,
+    required this.galleryUrls,
     required this.amenities,
-    this.thumbnailUrl,
-    this.galleryUrls = const [],
   });
 
   final String id;
   final String name;
   final String description;
+
+  /// One of 'Gasabo', 'Kicukiro', 'Nyarugenge'.
   final String district;
+
+  /// Monthly subscription price in RWF.
   final double subscriptionPrice;
-  final List<String> amenities;
-  final String? thumbnailUrl;
+
+  /// URLs pointing to gym / equipment photos.
   final List<String> galleryUrls;
+
+  /// Free-text amenity tags (e.g. 'Pool', 'Sauna', 'Free WiFi').
+  final List<String> amenities;
+
+  /// Convenience getter: first gallery image URL, or null if gallery is empty.
+  String? get thumbnailUrl => galleryUrls.isNotEmpty ? galleryUrls.first : null;
 
   @override
   List<Object?> get props => [
@@ -29,8 +40,7 @@ class GymEntity extends Equatable {
         description,
         district,
         subscriptionPrice,
-        amenities,
-        thumbnailUrl,
         galleryUrls,
+        amenities,
       ];
 }

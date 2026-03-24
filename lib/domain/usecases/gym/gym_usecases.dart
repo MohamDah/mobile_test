@@ -1,33 +1,39 @@
-// TODO(Person3): FilterGymsByDistrictUseCase. TODO(Person5): CRUD use cases.
-import '../../../core/usecases/usecase.dart';
 import '../../entities/gym_entity.dart';
 import '../../repositories/gym_repository.dart';
 
-/// Pure in-memory filter — no repository needed.
+/// Filters an already-loaded list of gyms by district in memory.
+/// Passing null or empty string returns the full unfiltered list.
 class FilterGymsByDistrictUseCase {
-  List<GymEntity> call(List<GymEntity> gyms, String? district) {
-    if (district == null) return gyms;
-    return gyms.where((g) => g.district == district).toList();
+  const FilterGymsByDistrictUseCase();
+
+  List<GymEntity> call({
+    required List<GymEntity> gyms,
+    required String? district,
+  }) {
+    if (district == null || district.isEmpty) return gyms;
+    return gyms
+        .where((g) => g.district.toLowerCase() == district.toLowerCase())
+        .toList();
   }
 }
 
-class CreateGymUseCase implements UseCase<void, GymEntity> {
-  CreateGymUseCase(this._repo);
-  final GymRepository _repo;
-  @override
-  Future<void> call(GymEntity gym) => _repo.createGym(gym);
+/// Creates a new gym document in Firestore.
+class CreateGymUseCase {
+  const CreateGymUseCase(this._repository);
+  final GymRepository _repository;
+  Future<void> call(GymEntity gym) => _repository.createGym(gym);
 }
 
-class UpdateGymUseCase implements UseCase<void, GymEntity> {
-  UpdateGymUseCase(this._repo);
-  final GymRepository _repo;
-  @override
-  Future<void> call(GymEntity gym) => _repo.updateGym(gym);
+/// Updates an existing gym document in Firestore.
+class UpdateGymUseCase {
+  const UpdateGymUseCase(this._repository);
+  final GymRepository _repository;
+  Future<void> call(GymEntity gym) => _repository.updateGym(gym);
 }
 
-class DeleteGymUseCase implements UseCase<void, String> {
-  DeleteGymUseCase(this._repo);
-  final GymRepository _repo;
-  @override
-  Future<void> call(String gymId) => _repo.deleteGym(gymId);
+/// Permanently deletes a gym document from Firestore.
+class DeleteGymUseCase {
+  const DeleteGymUseCase(this._repository);
+  final GymRepository _repository;
+  Future<void> call(String gymId) => _repository.deleteGym(gymId);
 }
