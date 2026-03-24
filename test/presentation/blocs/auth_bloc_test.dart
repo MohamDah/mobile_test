@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:fitlife/core/errors/failures.dart';
+import 'package:fitlife/domain/entities/user_entity.dart';
 import 'package:fitlife/domain/repositories/auth_repository.dart';
 import 'package:fitlife/domain/repositories/user_repository.dart';
 import 'package:fitlife/domain/usecases/auth/auth_usecases.dart';
@@ -27,9 +28,14 @@ class MockUserRepository extends Mock implements UserRepository {}
 
 class MockFirebaseUser extends Mock implements User {}
 
+class FakeUserEntity extends Fake implements UserEntity {}
+
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(FakeUserEntity());
+  });
   late MockSignInUseCase mockSignIn;
   late MockRegisterUseCase mockRegister;
   late MockGoogleSignInUseCase mockGoogleSignIn;

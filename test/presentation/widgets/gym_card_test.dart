@@ -82,8 +82,15 @@ void main() {
 
     testWidgets('renders subscription price', (tester) async {
       await tester.pumpWidget(buildCard());
-      // Price rendered as "RWF 30000/mo"
-      expect(find.textContaining('30000'), findsOneWidget);
+      // Price is rendered via RichText — search the plain string representation.
+      expect(
+        find.byWidgetPredicate(
+          (w) =>
+              w is RichText &&
+              w.text.toPlainText().contains('30000'),
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('renders amenity chips (max 3)', (tester) async {
