@@ -1,4 +1,3 @@
-// TODO(Person4): Wire into SavedGymsCubit fully.
 import '../../repositories/user_repository.dart';
 
 class SaveGymUseCase {
