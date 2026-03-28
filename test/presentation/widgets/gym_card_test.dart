@@ -8,13 +8,13 @@ import 'package:fitlife/presentation/blocs/saved_gyms/saved_gyms_cubit.dart';
 import 'package:fitlife/presentation/blocs/auth/auth_bloc.dart';
 import 'package:fitlife/presentation/widgets/gym_card.dart';
 
-// ── Mocks ─────────────────────────────────────────────────────────────────────
+// Mocks 
 
 class MockAuthBloc extends Mock implements AuthBloc {}
 
 class MockSavedGymsCubit extends Mock implements SavedGymsCubit {}
 
-// ── Fixtures ──────────────────────────────────────────────────────────────────
+// Fixtures 
 
 final _testGym = const GymEntity(
   id: 'gym_1',
@@ -26,7 +26,7 @@ final _testGym = const GymEntity(
   amenities: ['Pool', 'Sauna'],
 );
 
-// ── Tests ─────────────────────────────────────────────────────────────────────
+// Tests 
 
 void main() {
   late MockSavedGymsCubit mockSavedGymsCubit;

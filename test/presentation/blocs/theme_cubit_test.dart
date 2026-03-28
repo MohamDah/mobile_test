@@ -6,12 +6,12 @@ import 'package:mocktail/mocktail.dart';
 import 'package:fitlife/data/datasources/local/shared_preferences_datasource.dart';
 import 'package:fitlife/presentation/blocs/theme/theme_cubit.dart';
 
-// ── Mock ──────────────────────────────────────────────────────────────────────
+// Mock 
 
 class MockSharedPreferencesDataSource extends Mock
     implements SharedPreferencesDataSource {}
 
-// ── Tests ─────────────────────────────────────────────────────────────────────
+// Tests 
 
 void main() {
   late MockSharedPreferencesDataSource mockPrefs;

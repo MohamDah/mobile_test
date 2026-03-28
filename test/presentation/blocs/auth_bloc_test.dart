@@ -10,7 +10,7 @@ import 'package:fitlife/domain/repositories/user_repository.dart';
 import 'package:fitlife/domain/usecases/auth/auth_usecases.dart';
 import 'package:fitlife/presentation/blocs/auth/auth_bloc.dart';
 
-// ── Mocks ─────────────────────────────────────────────────────────────────────
+// Mocks 
 
 class MockSignInUseCase extends Mock implements SignInUseCase {}
 
@@ -30,7 +30,7 @@ class MockFirebaseUser extends Mock implements User {}
 
 class FakeUserEntity extends Fake implements UserEntity {}
 
-// ── Tests ─────────────────────────────────────────────────────────────────────
+// Tests 
 
 void main() {
   setUpAll(() {

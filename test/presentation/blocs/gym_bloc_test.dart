@@ -7,7 +7,7 @@ import 'package:fitlife/domain/usecases/gym/get_gyms_stream_usecase.dart';
 import 'package:fitlife/domain/usecases/gym/gym_usecases.dart';
 import 'package:fitlife/presentation/blocs/gym/gym_bloc.dart';
 
-// ── Mocks ─────────────────────────────────────────────────────────────────────
+// Mocks
 
 class MockGetGymsStreamUseCase extends Mock implements GetGymsStreamUseCase {}
 
@@ -17,7 +17,7 @@ class MockUpdateGymUseCase extends Mock implements UpdateGymUseCase {}
 
 class MockDeleteGymUseCase extends Mock implements DeleteGymUseCase {}
 
-// ── Fixtures ──────────────────────────────────────────────────────────────────
+// Fixtures
 
 final _gasaboGym = const GymEntity(
   id: 'g1',
@@ -39,7 +39,7 @@ final _kicukiroGym = const GymEntity(
   amenities: [],
 );
 
-// ── Tests ─────────────────────────────────────────────────────────────────────
+// Tests
 
 void main() {
   late MockGetGymsStreamUseCase mockGetGymsStream;

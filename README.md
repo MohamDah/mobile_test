@@ -16,6 +16,33 @@ A Flutter app for discovering, saving, and managing gyms across Kigali's three d
 
 ---
 
+## Screenshots
+
+### Core Screens
+
+| Screen |
+|--------|
+| Login page (email/password + Google button) |
+| Gym feed with district filter visible |
+| Gym detail (hero image + amenities + gallery dots) |
+| Saved gyms page |
+| Admin dashboard (list with edit/delete actions) |
+| Add/Edit gym form |
+| Settings page (theme + district preferences) |
+| Dark mode enabled |
+
+
+![Login](assets/screenshots/01-login.png)
+![Gym Feed](assets/screenshots/02-gym-feed.png)
+![Gym Detail](assets/screenshots/03-gym-detail.png)
+![Saved Gyms](assets/screenshots/04-saved-gyms.png)
+![Admin Dashboard](assets/screenshots/05-admin-dashboard.png)
+![Gym Form](assets/screenshots/06-gym-form.png)
+![Settings](assets/screenshots/07-settings.png)
+![Dark Mode](assets/screenshots/08-dark-mode.png)
+
+---
+
 ## Architecture
 
 The project follows Clean Architecture with three layers:
